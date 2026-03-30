@@ -1,0 +1,23 @@
+{
+    "name": "yahboom_song-and-dance",
+    "version": "0.0.1",
+    "description": "Custom dance moves and performance blocks for Yahboom SmartCar",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "devices": "*",
+        "yahboom_main": "github:dsalch/yahboom_main"
+    },
+    "files": [
+        "main.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "6.0.0"
+    },
+    "supportedTargets": [
+        "microbit"
+    ]
+}
