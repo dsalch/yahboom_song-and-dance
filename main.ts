@@ -39,7 +39,8 @@ namespace dance {
         let playStyle = mode == SoundMode.UntilDone ? music.PlaybackMode.UntilDone : music.PlaybackMode.InBackground;
 
         if (effect == DanceSound.Victory) {
-            music.play(music.builtInMelody(Melodies.PowerUp), playStyle);
+            // FIX: Use builtInPlayableMelody to return a Playable type
+            music.play(music.builtInPlayableMelody(Melodies.PowerUp), playStyle);
         } else if (effect == DanceSound.Slide) {
             music.play(music.createSoundExpression(WaveShape.Sine, 1, 5000, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), playStyle);
         } else if (effect == DanceSound.Jump) {
@@ -47,15 +48,13 @@ namespace dance {
         } else if (effect == DanceSound.Warp) {
             music.play(music.createSoundExpression(WaveShape.Sawtooth, 200, 2000, 255, 0, 300, SoundExpressionEffect.Warble, InterpolationCurve.Logarithmic), playStyle);
         } else if (effect == DanceSound.Alarm) {
-            music.play(music.builtInMelody(Melodies.BaDing), playStyle);
+            // FIX: Use builtInPlayableMelody to return a Playable type
+            music.play(music.builtInPlayableMelody(Melodies.BaDing), playStyle);
         } else if (effect == DanceSound.Spin) {
-            // Ascending siren-like swirl
             music.play(music.createSoundExpression(WaveShape.Triangle, 100, 2000, 255, 0, 800, SoundExpressionEffect.None, InterpolationCurve.Curve), playStyle);
         } else if (effect == DanceSound.Stutter) {
-            // Rapid percussive pulses
             music.play(music.createSoundExpression(WaveShape.Square, 200, 200, 255, 0, 500, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), playStyle);
         } else if (effect == DanceSound.PowerDown) {
-            // Descending "shutting off" sound
             music.play(music.createSoundExpression(WaveShape.Sine, 3000, 1, 255, 0, 1000, SoundExpressionEffect.None, InterpolationCurve.Logarithmic), playStyle);
         }
     }
