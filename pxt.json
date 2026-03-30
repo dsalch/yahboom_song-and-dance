@@ -1,6 +1,6 @@
 {
     "name": "yahboom_song-and-dance",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "description": "Custom dance moves blocks for Yahboom SmartCar",
     "dependencies": {
         "core": "*",
