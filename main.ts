@@ -12,12 +12,12 @@ namespace dance {
     //% speed.min=0 speed.max=255 speed.defl=100
     export function fastWiggle(speed: number): void {
         for (let i = 0; i < 5; i++) {
-            yahboom.setMotor(speed, -speed) // Quick left
+            mbit_robot.setMotor(speed, -speed) // Quick left
             basic.pause(100)
-            yahboom.setMotor(-speed, speed) // Quick right
+            mbit_robot.setMotor(-speed, speed) // Quick right
             basic.pause(100)
         }
-        yahboom.stopAllMotors()
+        mbit_robot.stopAllMotors()
     }
 
     /**
@@ -29,11 +29,11 @@ namespace dance {
     export function figureS(speed: number): void {
         let innerWheel = Math.floor(speed * 0.4);
         
-        yahboom.setMotor(speed, innerWheel)
+        mbit_robot.setMotor(speed, innerWheel)
         basic.pause(1200)
-        yahboom.setMotor(innerWheel, speed)
+        mbit_robot.setMotor(innerWheel, speed)
         basic.pause(1200)
-        yahboom.stopAllMotors()
+        mbit_robot.stopAllMotors()
     }
 
     /**
@@ -43,11 +43,11 @@ namespace dance {
     //% block="pop a wheelie at speed %speed"
     //% speed.min=150 speed.max=255 speed.defl=255
     export function popWheelie(speed: number): void {
-        yahboom.setMotor(-speed, -speed) 
+        mbit_robot.setMotor(-speed, -speed) 
         basic.pause(150)
-        yahboom.setMotor(speed, speed)  
+        mbit_robot.setMotor(speed, speed)  
         basic.pause(400)
-        yahboom.stopAllMotors()
+        mbit_robot.stopAllMotors()
     }
 
     /**
@@ -57,11 +57,11 @@ namespace dance {
     //% block="flip on back at speed %speed"
     //% speed.min=100 speed.max=255 speed.defl=200
     export function flipOnBack(speed: number): void {
-        yahboom.setMotor(speed, speed)
+        mbit_robot.setMotor(speed, speed)
         basic.pause(300)
-        yahboom.setMotor(-speed, -speed) 
+        mbit_robot.setMotor(-speed, -speed) 
         basic.pause(500)
-        yahboom.stopAllMotors()
+        mbit_robot.stopAllMotors()
     }
 
     /**
@@ -72,11 +72,11 @@ namespace dance {
     //% speed.min=100 speed.max=255 speed.defl=200
     export function flipRightSideUp(speed: number): void {
         for (let i = 0; i < 3; i++) {
-            yahboom.setMotor(speed, speed)
+            mbit_robot.setMotor(speed, speed)
             basic.pause(100)
-            yahboom.setMotor(-speed, -speed)
+            mbit_robot.setMotor(-speed, -speed)
             basic.pause(100)
         }
-        yahboom.stopAllMotors()
+        mbit_robot.stopAllMotors()
     }
 }
