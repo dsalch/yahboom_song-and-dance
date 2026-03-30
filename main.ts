@@ -96,11 +96,11 @@ namespace dance {
      * Pop a wheelie
      */
     //% block="pop a wheelie at speed %speed"
-    //% speed.min=150 speed.max=255 speed.defl=255
+    //% speed.min=150 speed.max=255 speed.defl=200
     //% weight=70
     export function popWheelie(speed: number): void {
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Back, speed)
-        basic.pause(150)
+        basic.pause(200)
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Run, speed)
         basic.pause(400)
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Stop, 0)
@@ -110,12 +110,12 @@ namespace dance {
      * Flip the robot on its back
      */
     //% block="flip on back at speed %speed"
-    //% speed.min=100 speed.max=255 speed.defl=200
+    //% speed.min=100 speed.max=255 speed.defl=250
     //% weight=60
     export function flipOnBack(speed: number): void {
-        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Run, speed)
-        basic.pause(300)
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Back, speed)
+        basic.pause(300)
+        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Run, speed)
         basic.pause(500)
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Stop, 0)
     }
@@ -124,15 +124,13 @@ namespace dance {
      * Attempt to flip right side up
      */
     //% block="flip upright at speed %speed"
-    //% speed.min=100 speed.max=255 speed.defl=200
+    //% speed.min=100 speed.max=255 speed.defl=250
     //% weight=50
     export function flipRightSideUp(speed: number): void {
-        for (let i = 0; i < 3; i++) {
-            mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Run, speed)
-            basic.pause(100)
-            mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Back, speed)
-            basic.pause(100)
-        }
+        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Run, speed)
+        basic.pause(200)
+        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Back, speed)
+        basic.pause(500)
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Stop, 0)
     }
 }
