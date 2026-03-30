@@ -24,8 +24,8 @@ namespace performance {
      * Perform a Figure S movement at a base speed
      * @param speed base speed for the curves, eg: 100
      */
-    //% block="do a figure S at speed %speed"
-    //% speed.min=40 speed.max=255 speed.defl=100
+    //% block="figure S at speed %speed"
+    //% speed.min=30 speed.max=255 speed.defl=100
     export function figureS(speed: number): void {
         // Calculate an inner wheel speed relative to the base speed
         let innerWheel = Math.floor(speed * 0.4);
@@ -71,7 +71,7 @@ namespace performance {
      * Attempt to flip right side up
      * @param speed vibration speed, eg: 200
      */
-    //% block="flip right side up at speed %speed"
+    //% block="flip upright at speed %speed"
     //% speed.min=100 speed.max=255 speed.defl=200
     export function flipRightSideUp(speed: number): void {
         for (let i = 0; i < 3; i++) {
