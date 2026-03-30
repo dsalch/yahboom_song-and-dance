@@ -4,8 +4,6 @@
     "description": "Custom dance moves and performance blocks for Yahboom SmartCar",
     "dependencies": {
         "core": "*",
-        "radio": "*",
-        "devices": "*",
         "yahboom_main": "github:dsalch/yahboom_main"
     },
     "files": [
