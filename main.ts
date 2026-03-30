@@ -14,7 +14,13 @@ namespace dance {
         //% block="Warp"
         Warp,
         //% block="Alarm"
-        Alarm
+        Alarm,
+        //% block="Spin"
+        Spin,
+        //% block="Stutter"
+        Stutter,
+        //% block="Power Down"
+        PowerDown
     }
 
     export enum SoundMode {
@@ -26,8 +32,6 @@ namespace dance {
 
     /**
      * Play a specific sound effect to match a dance move
-     * @param effect the sound to play
-     * @param mode play until finished or in the background
      */
     //% block="play dance sound %effect %mode"
     //% weight=100
@@ -44,86 +48,90 @@ namespace dance {
             music.play(music.createSoundExpression(WaveShape.Sawtooth, 200, 2000, 255, 0, 300, SoundExpressionEffect.Warble, InterpolationCurve.Logarithmic), playStyle);
         } else if (effect == DanceSound.Alarm) {
             music.play(music.builtInMelody(Melodies.BaDing), playStyle);
+        } else if (effect == DanceSound.Spin) {
+            // Ascending siren-like swirl
+            music.play(music.createSoundExpression(WaveShape.Triangle, 100, 2000, 255, 0, 800, SoundExpressionEffect.None, InterpolationCurve.Curve), playStyle);
+        } else if (effect == DanceSound.Stutter) {
+            // Rapid percussive pulses
+            music.play(music.createSoundExpression(WaveShape.Square, 200, 200, 255, 0, 500, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), playStyle);
+        } else if (effect == DanceSound.PowerDown) {
+            // Descending "shutting off" sound
+            music.play(music.createSoundExpression(WaveShape.Sine, 3000, 1, 255, 0, 1000, SoundExpressionEffect.None, InterpolationCurve.Logarithmic), playStyle);
         }
     }
 
     /**
      * Wiggle the robot back and forth quickly at a specific speed
-     * @param speed speed of the wiggle, eg: 100
      */
     //% block="fast wiggle at speed %speed"
     //% speed.min=0 speed.max=255 speed.defl=100
     //% weight=90
     export function fastWiggle(speed: number): void {
         for (let i = 0; i < 5; i++) {
-            mbit_Robot.setMotor(speed, -speed) 
+            mbit_robot.setMotor(speed, -speed)
             basic.pause(100)
-            mbit_Robot.setMotor(-speed, speed) 
+            mbit_robot.setMotor(-speed, speed)
             basic.pause(100)
         }
-        mbit_Robot.stopAllMotors()
+        mbit_robot.stopAllMotors()
     }
 
     /**
      * Perform a Figure S movement at a base speed
-     * @param speed base speed for the curves, eg: 100
      */
     //% block="figure S at speed %speed"
     //% speed.min=30 speed.max=255 speed.defl=100
     //% weight=80
     export function figureS(speed: number): void {
         let innerWheel = Math.floor(speed * 0.4);
-        mbit_Robot.setMotor(speed, innerWheel)
+        mbit_robot.setMotor(speed, innerWheel)
         basic.pause(1200)
-        mbit_Robot.setMotor(innerWheel, speed)
+        mbit_robot.setMotor(innerWheel, speed)
         basic.pause(1200)
-        mbit_Robot.stopAllMotors()
+        mbit_robot.stopAllMotors()
     }
 
     /**
      * Pop a wheelie
-     * @param speed maximum burst speed, eg: 255
      */
     //% block="pop a wheelie at speed %speed"
     //% speed.min=150 speed.max=255 speed.defl=255
     //% weight=70
     export function popWheelie(speed: number): void {
-        mbit_Robot.setMotor(-speed, -speed) 
+        mbit_robot.setMotor(-speed, -speed)
         basic.pause(150)
-        mbit_Robot.setMotor(speed, speed)  
+        mbit_robot.setMotor(speed, speed)
         basic.pause(400)
-        mbit_Robot.stopAllMotors()
+        mbit_robot.stopAllMotors()
     }
 
     /**
      * Flip the robot on its back
-     * @param speed speed to build momentum, eg: 200
      */
     //% block="flip on back at speed %speed"
     //% speed.min=100 speed.max=255 speed.defl=200
     //% weight=60
     export function flipOnBack(speed: number): void {
-        mbit_Robot.setMotor(speed, speed)
+        mbit_robot.setMotor(speed, speed)
         basic.pause(300)
-        mbit_Robot.setMotor(-speed, -speed) 
+        mbit_robot.setMotor(-speed, -speed)
         basic.pause(500)
-        mbit_Robot.stopAllMotors()
+        mbit_robot.stopAllMotors()
     }
 
     /**
      * Attempt to flip right side up
-     * @param speed vibration speed, eg: 200
      */
     //% block="flip upright at speed %speed"
     //% speed.min=100 speed.max=255 speed.defl=200
     //% weight=50
     export function flipRightSideUp(speed: number): void {
         for (let i = 0; i < 3; i++) {
-            mbit_Robot.setMotor(speed, speed)
+            mbit_robot.setMotor(speed, speed)
             basic.pause(100)
-            mbit_Robot.setMotor(-speed, -speed)
+            mbit_robot.setMotor(-speed, -speed)
             basic.pause(100)
         }
-        mbit_Robot.stopAllMotors()
+        mbit_robot.stopAllMotors()
     }
 }
