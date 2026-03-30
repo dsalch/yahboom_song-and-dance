@@ -39,7 +39,6 @@ namespace dance {
         let playStyle = mode == SoundMode.UntilDone ? music.PlaybackMode.UntilDone : music.PlaybackMode.InBackground;
 
         if (effect == DanceSound.Victory) {
-            // FIX: Use builtInPlayableMelody to return a Playable type
             music.play(music.builtInPlayableMelody(Melodies.PowerUp), playStyle);
         } else if (effect == DanceSound.Slide) {
             music.play(music.createSoundExpression(WaveShape.Sine, 1, 5000, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), playStyle);
@@ -48,7 +47,6 @@ namespace dance {
         } else if (effect == DanceSound.Warp) {
             music.play(music.createSoundExpression(WaveShape.Sawtooth, 200, 2000, 255, 0, 300, SoundExpressionEffect.Warble, InterpolationCurve.Logarithmic), playStyle);
         } else if (effect == DanceSound.Alarm) {
-            // FIX: Use builtInPlayableMelody to return a Playable type
             music.play(music.builtInPlayableMelody(Melodies.BaDing), playStyle);
         } else if (effect == DanceSound.Spin) {
             music.play(music.createSoundExpression(WaveShape.Triangle, 100, 2000, 255, 0, 800, SoundExpressionEffect.None, InterpolationCurve.Curve), playStyle);
@@ -67,12 +65,14 @@ namespace dance {
     //% weight=90
     export function fastWiggle(speed: number): void {
         for (let i = 0; i < 5; i++) {
-            mbit_Robot.setMotor(speed, -speed)
+            // SpinLeft moves left motor back, right motor forward
+            mbit_Robot.CarCtrlSpeed2(mbit_Robot.CarState.Car_SpinLeft, speed, speed)
             basic.pause(100)
-            mbit_Robot.setMotor(-speed, speed)
+            // SpinRight moves left motor forward, right motor back
+            mbit_Robot.CarCtrlSpeed2(mbit_Robot.CarState.Car_SpinRight, speed, speed)
             basic.pause(100)
         }
-        mbit_Robot.stopAllMotors()
+        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Stop, 0)
     }
 
     /**
@@ -83,11 +83,13 @@ namespace dance {
     //% weight=80
     export function figureS(speed: number): void {
         let innerWheel = Math.floor(speed * 0.4);
-        mbit_Robot.setMotor(speed, innerWheel)
+        // Curve one way
+        mbit_Robot.CarCtrlSpeed2(mbit_Robot.CarState.Car_Run, speed, innerWheel)
         basic.pause(1200)
-        mbit_Robot.setMotor(innerWheel, speed)
+        // Curve the other way
+        mbit_Robot.CarCtrlSpeed2(mbit_Robot.CarState.Car_Run, innerWheel, speed)
         basic.pause(1200)
-        mbit_Robot.stopAllMotors()
+        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Stop, 0)
     }
 
     /**
@@ -97,11 +99,11 @@ namespace dance {
     //% speed.min=150 speed.max=255 speed.defl=255
     //% weight=70
     export function popWheelie(speed: number): void {
-        mbit_Robot.setMotor(-speed, -speed)
+        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Back, speed)
         basic.pause(150)
-        mbit_Robot.setMotor(speed, speed)
+        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Run, speed)
         basic.pause(400)
-        mbit_Robot.stopAllMotors()
+        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Stop, 0)
     }
 
     /**
@@ -111,11 +113,11 @@ namespace dance {
     //% speed.min=100 speed.max=255 speed.defl=200
     //% weight=60
     export function flipOnBack(speed: number): void {
-        mbit_Robot.setMotor(speed, speed)
+        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Run, speed)
         basic.pause(300)
-        mbit_Robot.setMotor(-speed, -speed)
+        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Back, speed)
         basic.pause(500)
-        mbit_Robot.stopAllMotors()
+        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Stop, 0)
     }
 
     /**
@@ -126,11 +128,11 @@ namespace dance {
     //% weight=50
     export function flipRightSideUp(speed: number): void {
         for (let i = 0; i < 3; i++) {
-            mbit_Robot.setMotor(speed, speed)
+            mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Run, speed)
             basic.pause(100)
-            mbit_Robot.setMotor(-speed, -speed)
+            mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Back, speed)
             basic.pause(100)
         }
-        mbit_Robot.stopAllMotors()
+        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Stop, 0)
     }
 }
