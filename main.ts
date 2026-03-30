@@ -56,12 +56,12 @@ namespace dance {
     //% weight=90
     export function fastWiggle(speed: number): void {
         for (let i = 0; i < 5; i++) {
-            mbit_robot.setMotor(speed, -speed) 
+            mbit_Robot.setMotor(speed, -speed) 
             basic.pause(100)
-            mbit_robot.setMotor(-speed, speed) 
+            mbit_Robot.setMotor(-speed, speed) 
             basic.pause(100)
         }
-        mbit_robot.stopAllMotors()
+        mbit_Robot.stopAllMotors()
     }
 
     /**
@@ -73,11 +73,11 @@ namespace dance {
     //% weight=80
     export function figureS(speed: number): void {
         let innerWheel = Math.floor(speed * 0.4);
-        mbit_robot.setMotor(speed, innerWheel)
+        mbit_Robot.setMotor(speed, innerWheel)
         basic.pause(1200)
-        mbit_robot.setMotor(innerWheel, speed)
+        mbit_Robot.setMotor(innerWheel, speed)
         basic.pause(1200)
-        mbit_robot.stopAllMotors()
+        mbit_Robot.stopAllMotors()
     }
 
     /**
@@ -88,11 +88,11 @@ namespace dance {
     //% speed.min=150 speed.max=255 speed.defl=255
     //% weight=70
     export function popWheelie(speed: number): void {
-        mbit_robot.setMotor(-speed, -speed) 
+        mbit_Robot.setMotor(-speed, -speed) 
         basic.pause(150)
-        mbit_robot.setMotor(speed, speed)  
+        mbit_Robot.setMotor(speed, speed)  
         basic.pause(400)
-        mbit_robot.stopAllMotors()
+        mbit_Robot.stopAllMotors()
     }
 
     /**
@@ -103,11 +103,11 @@ namespace dance {
     //% speed.min=100 speed.max=255 speed.defl=200
     //% weight=60
     export function flipOnBack(speed: number): void {
-        mbit_robot.setMotor(speed, speed)
+        mbit_Robot.setMotor(speed, speed)
         basic.pause(300)
-        mbit_robot.setMotor(-speed, -speed) 
+        mbit_Robot.setMotor(-speed, -speed) 
         basic.pause(500)
-        mbit_robot.stopAllMotors()
+        mbit_Robot.stopAllMotors()
     }
 
     /**
@@ -119,11 +119,11 @@ namespace dance {
     //% weight=50
     export function flipRightSideUp(speed: number): void {
         for (let i = 0; i < 3; i++) {
-            mbit_robot.setMotor(speed, speed)
+            mbit_Robot.setMotor(speed, speed)
             basic.pause(100)
-            mbit_robot.setMotor(-speed, -speed)
+            mbit_Robot.setMotor(-speed, -speed)
             basic.pause(100)
         }
-        mbit_robot.stopAllMotors()
+        mbit_Robot.stopAllMotors()
     }
 }
