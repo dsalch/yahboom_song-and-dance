@@ -1,8 +1,8 @@
 /**
  * Custom blocks for Yahboom SmartCar "Song and Dance" routines
  */
-//% weight=100 color=#E67E22 icon="\uf001" block="Performance"
-namespace performance {
+//% weight=100 color=#E67E22 icon="\uf001" block="Dance"
+namespace dance {
 
     /**
      * Wiggle the robot back and forth quickly at a specific speed
@@ -27,13 +27,10 @@ namespace performance {
     //% block="figure S at speed %speed"
     //% speed.min=30 speed.max=255 speed.defl=100
     export function figureS(speed: number): void {
-        // Calculate an inner wheel speed relative to the base speed
         let innerWheel = Math.floor(speed * 0.4);
         
-        // First curve
         yahboom.setMotor(speed, innerWheel)
         basic.pause(1200)
-        // Second curve
         yahboom.setMotor(innerWheel, speed)
         basic.pause(1200)
         yahboom.stopAllMotors()
@@ -46,9 +43,9 @@ namespace performance {
     //% block="pop a wheelie at speed %speed"
     //% speed.min=150 speed.max=255 speed.defl=255
     export function popWheelie(speed: number): void {
-        yahboom.setMotor(-speed, -speed) // Quick jerk back
+        yahboom.setMotor(-speed, -speed) 
         basic.pause(150)
-        yahboom.setMotor(speed, speed)   // Immediate burst forward
+        yahboom.setMotor(speed, speed)  
         basic.pause(400)
         yahboom.stopAllMotors()
     }
