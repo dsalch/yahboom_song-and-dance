@@ -5,69 +5,79 @@
 namespace performance {
 
     /**
-     * Wiggle the robot back and forth quickly
+     * Wiggle the robot back and forth quickly at a specific speed
+     * @param speed speed of the wiggle, eg: 100
      */
-    //% block="fast wiggle"
-    export function fastWiggle(): void {
+    //% block="fast wiggle at speed %speed"
+    //% speed.min=0 speed.max=255 speed.defl=100
+    export function fastWiggle(speed: number): void {
         for (let i = 0; i < 5; i++) {
-            yahboom.setMotor(100, -100) // Quick left
+            yahboom.setMotor(speed, -speed) // Quick left
             basic.pause(100)
-            yahboom.setMotor(-100, 100) // Quick right
+            yahboom.setMotor(-speed, speed) // Quick right
             basic.pause(100)
         }
         yahboom.stopAllMotors()
     }
 
     /**
-     * Perform a Figure S movement
+     * Perform a Figure S movement at a base speed
+     * @param speed base speed for the curves, eg: 100
      */
-    //% block="do a figure S"
-    export function figureS(): void {
+    //% block="do a figure S at speed %speed"
+    //% speed.min=40 speed.max=255 speed.defl=100
+    export function figureS(speed: number): void {
+        // Calculate an inner wheel speed relative to the base speed
+        let innerWheel = Math.floor(speed * 0.4);
+        
         // First curve
-        yahboom.setMotor(100, 40)
+        yahboom.setMotor(speed, innerWheel)
         basic.pause(1200)
         // Second curve
-        yahboom.setMotor(40, 100)
+        yahboom.setMotor(innerWheel, speed)
         basic.pause(1200)
         yahboom.stopAllMotors()
     }
 
     /**
-     * Pop a wheelie (Requires high initial torque)
+     * Pop a wheelie
+     * @param speed maximum burst speed, eg: 255
      */
-    //% block="pop a wheelie"
-    export function popWheelie(): void {
-        yahboom.setMotor(-100, -100) // Quick jerk back
+    //% block="pop a wheelie at speed %speed"
+    //% speed.min=150 speed.max=255 speed.defl=255
+    export function popWheelie(speed: number): void {
+        yahboom.setMotor(-speed, -speed) // Quick jerk back
         basic.pause(150)
-        yahboom.setMotor(100, 100)  // Immediate full power forward
+        yahboom.setMotor(speed, speed)   // Immediate burst forward
         basic.pause(400)
         yahboom.stopAllMotors()
     }
 
     /**
      * Flip the robot on its back
-     * Note: This usually requires a sudden burst of reverse speed 
-     * or a specific mechanical momentum.
+     * @param speed speed to build momentum, eg: 200
      */
-    //% block="flip on back"
-    export function flipOnBack(): void {
-        yahboom.setMotor(100, 100)
+    //% block="flip on back at speed %speed"
+    //% speed.min=100 speed.max=255 speed.defl=200
+    export function flipOnBack(speed: number): void {
+        yahboom.setMotor(speed, speed)
         basic.pause(300)
-        yahboom.setMotor(-100, -100) // Hard reverse to shift center of gravity
+        yahboom.setMotor(-speed, -speed) 
         basic.pause(500)
         yahboom.stopAllMotors()
     }
 
     /**
      * Attempt to flip right side up
+     * @param speed vibration speed, eg: 200
      */
-    //% block="flip right side up"
-    export function flipRightSideUp(): void {
-        // High frequency vibration/jerk to encourage rolling over
+    //% block="flip right side up at speed %speed"
+    //% speed.min=100 speed.max=255 speed.defl=200
+    export function flipRightSideUp(speed: number): void {
         for (let i = 0; i < 3; i++) {
-            yahboom.setMotor(100, 100)
+            yahboom.setMotor(speed, speed)
             basic.pause(100)
-            yahboom.setMotor(-100, -100)
+            yahboom.setMotor(-speed, -speed)
             basic.pause(100)
         }
         yahboom.stopAllMotors()
