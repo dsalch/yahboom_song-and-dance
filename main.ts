@@ -1,7 +1,7 @@
 /**
  * Custom blocks for Yahboom SmartCar "Song and Dance" routines
  */
-//% weight=100 color=#E67E22 icon="\uf001" block="Dance"
+//% weight=10 color=#E67E22 icon="\uf001" block="Dance"
 namespace dance {
 
     export enum DanceSound {
