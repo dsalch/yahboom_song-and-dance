@@ -96,11 +96,9 @@ namespace dance {
      * Pop a wheelie
      */
     //% block="pop a wheelie at speed %speed"
-    //% speed.min=150 speed.max=255 speed.defl=200
+    //% speed.min=150 speed.max=255 speed.defl=127
     //% weight=70
     export function popWheelie(speed: number): void {
-        mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Back, speed)
-        basic.pause(200)
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Run, speed)
         basic.pause(400)
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Stop, 0)
@@ -114,7 +112,7 @@ namespace dance {
     //% weight=60
     export function flipOnBack(speed: number): void {
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Back, speed)
-        basic.pause(300)
+        basic.pause(200)
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Run, speed)
         basic.pause(500)
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Stop, 0)
@@ -128,7 +126,7 @@ namespace dance {
     //% weight=50
     export function flipRightSideUp(speed: number): void {
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Run, speed)
-        basic.pause(200)
+        basic.pause(50)
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Back, speed)
         basic.pause(500)
         mbit_Robot.CarCtrlSpeed(mbit_Robot.CarState.Car_Stop, 0)
