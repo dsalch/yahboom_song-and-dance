@@ -1,7 +1,7 @@
 {
     "name": "yahboom_song-and-dance",
-    "version": "0.0.3",
-    "description": "Custom dance moves and performance blocks for Yahboom SmartCar",
+    "version": "0.0.4",
+    "description": "Custom dance moves blocks for Yahboom SmartCar",
     "dependencies": {
         "core": "*",
         "yahboom_main": "github:dsalch/yahboom_main"
